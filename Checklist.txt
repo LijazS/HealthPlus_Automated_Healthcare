@@ -1,0 +1,4 @@
+1.Patient Portal/Self-Service: Web portals for appointment management, billing, and results increase engagement and can be built incrementally.
+2.Laboratory and Diagnostic Management: Integration with labs for managing test orders and results is increasingly common and achievable with modular design.​
+3.Ward and Bed Management: Useful for hospitals with inpatient care and feasible with simple admission, discharge, and bed status tracking.​
+4.Analytics and Reporting: Start with basic dashboards; more advanced real-time and predictive analytics can be added as data grows.​​
