@@ -36,6 +36,7 @@ const Appointment_his = () => {
         fetchAppointments();
     }, [refresh]);
 
+
         return (
         <div>
                 <Header />

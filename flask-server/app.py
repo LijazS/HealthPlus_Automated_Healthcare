@@ -72,7 +72,19 @@ def Login():
 @jwt_required()
 def book_appointment():
     user_email = get_jwt_identity()
-    appointment_data = request.json
+    tot_pending = appointment_collection.count_documents({"user_email": user_email, "status": "Pending"})
+    
+    if tot_pending >= 3:
+        return jsonify({"message": "You have reached the maximum number of pending appointments (3). Please wait for existing appointments to be processed."}), 400
+    appointment_data = request.get_json(silent=True)
+    if not appointment_data:
+        return jsonify({"message": "Invalid or missing JSON body."}), 400
+
+    # Ensure required fields are present and non-empty (not just present)
+    required = ['preferredDate', 'phone', 'speciality']
+    missing = [k for k in required if k not in appointment_data or not str(appointment_data.get(k, '')).strip()]
+    if missing:
+        return jsonify({"message": "Missing required appointment fields.", "missing": missing}), 400
     appointment_data['user_email'] = user_email
     appointment_data['status'] = "Pending"
     appointment_collection.insert_one(appointment_data)

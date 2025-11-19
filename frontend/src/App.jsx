@@ -11,6 +11,7 @@ import Appointments from './pages/Appointments.jsx';
 import Prescriptions from './pages/Prescriptions.jsx';
 import Thanks_appointment from './pages/Thanks_appointment.jsx';
 import Appointment_his from './pages/Appointment_his.jsx';
+import AdminPage from './pages/AdminPage.jsx';
 
 
 const App = () => {
@@ -29,6 +30,7 @@ const App = () => {
               <Route path="/results" element={ <ProtectedRoute><Res/></ProtectedRoute> } />
               <Route path="/appointments" element={ <ProtectedRoute><Appointments/></ProtectedRoute> } />
               <Route path="/prescriptions" element={ <ProtectedRoute><Prescriptions/></ProtectedRoute> } />
+              <Route path="/admin" element={ <AdminPage /> } />
           </Routes>      
           </Router>
 

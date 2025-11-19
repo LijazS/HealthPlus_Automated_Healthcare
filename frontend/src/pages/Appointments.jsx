@@ -57,9 +57,9 @@ const Appointments = () => {
 
        
           
-          <div className="fixed inset-0 w-full h-full bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-white pt-30 flex items-center justify-center">
+          <div className="min-h-screen bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-white py-12 flex items-start justify-center">
 
-        <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-2xl w-full max-w-2xl p-8">
+        <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-2xl w-full max-w-2xl p-6 sm:p-8 mx-4 mt-10">
         {/* Header */}
         <div className="text-center mb-8">
           <h2 className="text-3xl font-bold text-gray-800 dark:text-white">
@@ -69,12 +69,12 @@ const Appointments = () => {
         </div>
 
         {/* Form */}
-        <form className="grid grid-cols-1 sm:grid-cols-2 gap-6" onSubmit={handleSBooking}>
+        <form className="grid grid-cols-1 sm:grid-cols-2 gap-4" onSubmit={handleSBooking}>
          
 
 
 
-          <div className="sm:col-span-2">
+          <div className="sm:col-span-1">
             <label
               htmlFor="email"
               className="block mb-2 text-sm text-gray-700 dark:text-gray-300"
@@ -90,7 +90,7 @@ const Appointments = () => {
             />
           </div>
 
-          <div className="sm:col-span-2">
+          <div className="sm:col-span-1">
             <label
               htmlFor="age"
               className="block mb-2 text-sm text-gray-700 dark:text-gray-300"
@@ -106,7 +106,7 @@ const Appointments = () => {
             />
           </div>
 
-          <div className="sm:col-span-2">
+          <div className="sm:col-span-1">
             <label
               htmlFor="email"
               className="block mb-2 text-sm text-gray-700 dark:text-gray-300"
@@ -121,7 +121,7 @@ const Appointments = () => {
               className="w-full rounded-lg border border-gray-300 dark:border-gray-700 bg-gray-50 dark:bg-gray-700 px-3 py-2 text-gray-800 dark:text-gray-100 outline-none focus:ring-2 focus:ring-indigo-500"
             />
           </div>
-          <div className="sm:col-span-2">
+          <div className="sm:col-span-1">
             <label
               htmlFor="Phone"
               className="block mb-2 text-sm text-gray-700 dark:text-gray-300"
@@ -136,7 +136,7 @@ const Appointments = () => {
               className="w-full rounded-lg border border-gray-300 dark:border-gray-700 bg-gray-50 dark:bg-gray-700 px-3 py-2 text-gray-800 dark:text-gray-100 outline-none focus:ring-2 focus:ring-indigo-500"
             />
           </div>
-          <div className="sm:col-span-2">
+          <div className="sm:col-span-1">
             <label
               htmlFor="preferredDate"
               className="block mb-2 text-sm text-gray-700 dark:text-gray-300"
@@ -151,27 +151,33 @@ const Appointments = () => {
               className="w-full rounded-lg border border-gray-300 dark:border-gray-700 bg-gray-50 dark:bg-gray-700 px-3 py-2 text-gray-800 dark:text-gray-100 outline-none focus:ring-2 focus:ring-indigo-500"
             />
           </div>
-          <div className="sm:col-span-2">
+          <div className="sm:col-span-1">
             <label
               htmlFor="speciality"
               className="block mb-2 text-sm text-gray-700 dark:text-gray-300"
             >
-              Speciality/Department*
+              Speciality / Department*
             </label>
-            <input
+            <select
               name="speciality"
-              type="text"
               value={formData.speciality}
               onChange={handleChange}
               className="w-full rounded-lg border border-gray-300 dark:border-gray-700 bg-gray-50 dark:bg-gray-700 px-3 py-2 text-gray-800 dark:text-gray-100 outline-none focus:ring-2 focus:ring-indigo-500"
-            />
+            >
+              <option value="">Select department</option>
+              <option value="Pediatrics">Pediatrics</option>
+              <option value="Cardiology">Cardiology</option>
+              <option value="Orthopedics">Orthopedics</option>
+              <option value="General Medicine">General Medicine</option>
+              <option value="Dermatology">Dermatology</option>
+            </select>
           </div>
 
 
           
 
 
-       <div className="w-full sm:col-span-2 relative flex justify-center items-center">
+       <div className="w-full sm:col-span-2 relative flex flex-col sm:flex-row sm:justify-between items-center">
   <button
     type="submit"
     className="rounded-lg bg-indigo-600 hover:bg-indigo-700 px-8 py-3 text-sm font-semibold text-white transition duration-150 cursor-pointer"
@@ -179,7 +185,7 @@ const Appointments = () => {
     BOOK
   </button>
 
-  <span className="absolute right-0 text-sm text-gray-500 dark:text-gray-400">
+  <span className="mt-3 sm:mt-0 sm:ml-4 text-sm text-gray-500 dark:text-gray-400">
     *Required
   </span>
 </div>
