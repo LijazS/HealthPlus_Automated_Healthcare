@@ -32,6 +32,7 @@ def home():
     return jsonify({"message": "Hello from Flask!"})
 
 
+###################################### USER REGISTERATION AND LOGIN ############################################
 @app.route('/Register', methods=['POST'])
 def register():
     user_data = request.json
@@ -63,6 +64,9 @@ def Login():
     else:
         return jsonify({"message": "Invalid email or password"}), 400
     
+###################################### USER REGISTERATION AND LOGIN ############################################
+
+###################################### APPOINTMENTS ############################################
 
 @app.route('/appointments', methods=['POST'])
 @jwt_required()
@@ -70,8 +74,20 @@ def book_appointment():
     user_email = get_jwt_identity()
     appointment_data = request.json
     appointment_data['user_email'] = user_email
+    appointment_data['status'] = "Pending"
     appointment_collection.insert_one(appointment_data)
     return jsonify({"message": "Appointment booked successfully!"}), 201
+
+@app.route('/appointments', methods=['GET'])
+@jwt_required()
+def get_appointments():
+    user_email = get_jwt_identity()
+    appointments = list(appointment_collection.find({"user_email": user_email}, {'_id': 0}))
+    return jsonify(appointments), 200
+
+
+
+###################################### APPOINTMENTS ############################################
 
 @app.route('/verify', methods=['GET'])
 @jwt_required()

@@ -31,8 +31,8 @@ const Header = () => {
 
           <div className="fixed inset-x-0 top-0 z-50 bg-white dark:bg-gray-800 shadow-md">
 
-  <div className="px-4 md:px-8 top-0">
-    <header className="mx-auto max-w-7xl flex items-center justify-between py-4 md:py-5 px-4 md:px-8">
+  <div className="w-full px-4 md:px-8 top-0">
+    <header className="w-full flex items-center justify-between py-4 md:py-5 px-4 md:px-8">
       <a href="/" className="inline-flex items-center gap-2.5 text-2xl font-bold text-white md:text-3xl" aria-label="logo">
         <svg width="95" height="94" viewBox="0 0 95 94" className="h-auto w-6 text-indigo-500" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
           <path d="M96 0V47L48 94H0V47L48 0H96Z" />
@@ -42,7 +42,7 @@ const Header = () => {
      
      </a>
       <nav className="hidden gap-12 lg:flex">
-        <a href="#" className="text-lg font-semibold text-gray-300 transition duration-100 hover:text-indigo-500 active:text-indigo-700">Home</a>
+        <Link to="/" className="text-lg font-semibold text-gray-300 transition duration-100 hover:text-indigo-500 active:text-indigo-700">Home</Link>
         <a href="#" className="text-lg font-semibold text-gray-300 transition duration-100 hover:text-indigo-500 active:text-indigo-700">Pricing</a>
         <a href="#" className="text-lg font-semibold text-gray-300 transition duration-100 hover:text-indigo-500 active:text-indigo-700">About</a>
       </nav>

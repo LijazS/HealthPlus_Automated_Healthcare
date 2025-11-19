@@ -2,8 +2,13 @@ import React from 'react';
 import Header from '../components/header.jsx';
 import { useState,useEffect } from 'react';
 import axios from 'axios';
+import { useNavigate } from "react-router-dom";
+
+
 
 const Appointments = () => {
+
+  const navigate = useNavigate();
 
   const [formData, setFormData]  = useState({
     name: '',
@@ -21,6 +26,7 @@ const Appointments = () => {
   const handleSBooking = async (e) => {
     e.preventDefault();
 
+    try {
     const resp = await axios.post("http://localhost:5000/appointments", formData, {
       headers: {
         "Content-Type": "application/json",
@@ -30,7 +36,16 @@ const Appointments = () => {
   );
     const data = resp.data;
     console.log("Appointment booked:", data);
-  }
+    navigate("/thanks_appointment");
+  } catch (error) {
+    if (error.response) {
+      console.error("Booking failed:", error.response.data);
+      alert("Booking failed: " + error.response.data.message);
+    } else {
+      console.error("Error occurred during booking:", error.message);
+      alert("Booking failed: " + error.message);
+    }
+  }}
 
 
 
@@ -54,7 +69,7 @@ const Appointments = () => {
         </div>
 
         {/* Form */}
-        <form className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+        <form className="grid grid-cols-1 sm:grid-cols-2 gap-6" onSubmit={handleSBooking}>
          
 
 

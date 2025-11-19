@@ -53,12 +53,12 @@ const Landing = () => {
   }, [token]);
 
   return (
-    <div>
-      <div className="Header">
+    <div className="w-full min-h-screen bg-gray-900 text-white">
+      <div className="w-full">
         <Header />
       </div>
 
-      <div className="body2 pt-13">
+      <div className="relative w-screen min-h-screen pt-12 left-0 right-0">
         {token ? (
           <ClientLand />
         ) : (
