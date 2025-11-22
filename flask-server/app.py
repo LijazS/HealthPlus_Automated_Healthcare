@@ -11,16 +11,27 @@ from flask_bcrypt import Bcrypt
 
 load_dotenv()
 
-MONGO_URI = os.getenv("MONGO_URI", "mongodb+srv://lijazsalim_db_user:liju2001@cluster0.u8pio4j.mongodb.net/?appName=Cluster0")
+# Load sensitive values from environment only (no hard-coded secrets)
+MONGO_URI = os.getenv("MONGO_URI")
+SECRET_KEY = os.getenv("SECRET_KEY")
+
+if not MONGO_URI:
+    raise RuntimeError(
+        "MONGO_URI environment variable not set. Create a local .env file (see flask-server/.env.example) and do not commit credentials."
+    )
+if not SECRET_KEY:
+    raise RuntimeError(
+        "SECRET_KEY environment variable not set. Create a local .env file (see flask-server/.env.example) and do not commit credentials."
+    )
 
 app = Flask(__name__)
-app.secret_key = os.getenv("SECRET_KEY", "supersecret12345_flask_server")
+app.secret_key = SECRET_KEY
 CORS(app, supports_credentials=True)
 bcrypt = Bcrypt(app)
 jwt = JWTManager(app)
 
 #Db connection
-client = MongoClient(MONGO_URI, server_api=ServerApi('1'))
+client = MongoClient(MONGO_URI)
 db = client.my_db
 user_collection = db['users']
 appointment_collection = db['appointments']

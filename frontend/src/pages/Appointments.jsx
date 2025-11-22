@@ -27,7 +27,7 @@ const Appointments = () => {
     e.preventDefault();
 
     try {
-    const resp = await axios.post("http://localhost:5000/appointments", formData, {
+    const resp = await axios.post(`${import.meta.env.VITE_API_URL}/appointments`, formData, {
       headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer ${localStorage.getItem("token")}`,

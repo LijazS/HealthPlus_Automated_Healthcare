@@ -20,7 +20,7 @@ const handleLogin = async (e) => {
   e.preventDefault();
 
   try {
-    const resp = await axios.post("http://localhost:5000/Login", formData, {
+    const resp = await axios.post(`${import.meta.env.VITE_API_URL}/Login`, formData, {
       headers: { "Content-Type": "application/json" },
     });
 

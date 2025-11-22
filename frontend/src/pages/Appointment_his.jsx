@@ -21,7 +21,7 @@ const Appointment_his = () => {
                     return;
                 }
 
-                const response = await axios.get("http://localhost:5000/appointments", {
+                const response = await axios.get(`${import.meta.env.VITE_API_URL}/appointments`, {
                     headers: {
                         Authorization: `Bearer ${token}`,
                     },

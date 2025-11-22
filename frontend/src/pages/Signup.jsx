@@ -28,7 +28,7 @@ const handleSubmit = async (e) => {
     e.preventDefault();
 
     try {
-      const response = await axios.post("http://localhost:5000/Register", formData,{
+      const response = await axios.post(`${import.meta.env.VITE_API_URL}/Register`, formData,{
         headers: { "Content-Type": "application/json" },});
         
 

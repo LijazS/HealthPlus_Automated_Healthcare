@@ -23,7 +23,7 @@ const Landing = () => {
       if (!token) return;
 
       try {
-        const resp = await axios.get("http://localhost:5000/verify", {
+        const resp = await axios.get(`${import.meta.env.VITE_API_URL}/verify`, {
           headers: { Authorization: `Bearer ${token}` },
         });
 

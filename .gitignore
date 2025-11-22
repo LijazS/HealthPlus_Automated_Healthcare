@@ -1,0 +1,14 @@
+# Python
+__pycache__/
+*.py[cod]
+*.sqlite3
+env/
+venv/
+.flaskenv
+flask-server/.env
+
+# Node
+node_modules/
+
+# Misc
+.DS_Store
