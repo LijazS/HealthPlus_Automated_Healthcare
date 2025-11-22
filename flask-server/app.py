@@ -37,6 +37,10 @@ user_collection = db['users']
 appointment_collection = db['appointments']
 
 
+ADMIN_USER = os.environ.get("ADMIN_USER", "admin")
+ADMIN_PASS = os.environ.get("ADMIN_PASS")  # plain or hashed; better hashed
+
+
 
 @app.route('/')
 def home():
@@ -111,6 +115,23 @@ def get_appointments():
 
 
 ###################################### APPOINTMENTS ############################################
+###################################### ADMIN ############################################
+
+@app.route('/admin/login', methods=['POST'])
+def admin_login():
+    admin_data = request.json
+    username = admin_data.get('username')
+    password = admin_data.get('password')
+
+    if username == ADMIN_USER and password == ADMIN_PASS:
+        token = create_access_token(identity=username, expires_delta=datetime.timedelta(hours=2))
+        return jsonify({"message": "Admin login successful!", "token": token}), 200
+    else:
+        return jsonify({"message": "Invalid admin credentials"}), 401
+
+
+###################################### ADMIN ############################################
+
 
 @app.route('/verify', methods=['GET'])
 @jwt_required()

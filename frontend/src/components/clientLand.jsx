@@ -9,8 +9,9 @@ const ClientLand = () => {
   const navigate = useNavigate();
 
     return (
-      <div className="fixed inset-0 w-full h-full overflow-auto bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-white pt-20">
+      <div className="fixed inset-0 w-full h-full bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-white pt-20">
   {/* Top Section */}
+  <div className="w-full h-screen pt-10 px-10 overflow-auto">
   <div  className="w-full pt-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 items-stretch px-10">
     <div onClick={() => navigate("/appointments")} className="rounded bg-gray-300 dark:bg-gray-700 h-64 sm:h-80 md:h-96 lg:h-[50vh] relative overflow-hidden transition-all hover:brightness-70 cursor-pointer">
       <img
@@ -78,6 +79,7 @@ const ClientLand = () => {
     <div className="rounded bg-gray-300 dark:bg-gray-700 h-64 sm:h-80 md:h-96 lg:h-[50vh]"></div>
 
 
+  </div>
   </div>
 
 </div>

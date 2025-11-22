@@ -6,12 +6,14 @@ import Signup from './pages/Signup.jsx'
 import Landing from './pages/Landing.jsx'
 import axios from 'axios';
 import ProtectedRoute from './components/protectedRoute.jsx';
+import ProtectedAdmin from './components/protectedAdmin.jsx';
 import Res from './pages/Res.jsx';
 import Appointments from './pages/Appointments.jsx';
 import Prescriptions from './pages/Prescriptions.jsx';
 import Thanks_appointment from './pages/Thanks_appointment.jsx';
 import Appointment_his from './pages/Appointment_his.jsx';
-import AdminPage from './pages/AdminPage.jsx';
+import AdminPage from './pages/adminPages/AdminPage.jsx';
+import AdminDashboard from './pages/adminPages/AdminDashboard.jsx';
 
 
 const App = () => {
@@ -31,6 +33,7 @@ const App = () => {
               <Route path="/appointments" element={ <ProtectedRoute><Appointments/></ProtectedRoute> } />
               <Route path="/prescriptions" element={ <ProtectedRoute><Prescriptions/></ProtectedRoute> } />
               <Route path="/admin" element={ <AdminPage /> } />
+              <Route path="/admin/dashboard" element={ <ProtectedAdmin><AdminDashboard /></ProtectedAdmin> } />
           </Routes>      
           </Router>
 
