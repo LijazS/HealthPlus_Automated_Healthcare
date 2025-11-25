@@ -1,0 +1,88 @@
+# ===========================
+# 1. Backend Deployment (Flask)
+# ===========================
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: backend-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: backend
+  template:
+    metadata:
+      labels:
+        app: backend
+    spec:
+      containers:
+      - name: backend
+        image: docker.io/lijazs/hosp-backend:latest # Replace with your actual image name
+        imagePullPolicy: Always  # Use local image if available
+        ports:
+        - containerPort: 5000
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+---
+# ===========================
+# 2. Backend Service
+# ===========================
+apiVersion: v1
+kind: Service
+metadata:
+  name: backend-service
+spec:
+  selector:
+    app: backend
+  ports:
+    - protocol: TCP
+      port: 5000         # Port exposed to the cluster/outside
+      targetPort: 5000   # Port the container is listening on
+  type: LoadBalancer     # Exposes it to localhost:5000 so React can reach it
+
+---
+# ===========================
+# 3. Frontend Deployment (React)
+# ===========================
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: frontend-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: frontend
+  template:
+    metadata:
+      labels:
+        app: frontend
+    spec:
+      containers:
+      - name: frontend
+        image: docker.io/lijazs/hosp-frontend:latest   # Using the image name you built earlier
+        imagePullPolicy: Always # Important for using locally built images
+        ports:
+        - containerPort: 5173
+        resources:
+          limits:
+            memory: "256Mi"
+            cpu: "500m"
+---
+# ===========================
+# 4. Frontend Service
+# ===========================
+apiVersion: v1
+kind: Service
+metadata:
+  name: frontend-service
+spec:
+  selector:
+    app: frontend
+  ports:
+    - protocol: TCP
+      port: 5173         # Port exposed to your browser
+      targetPort: 5173   # Port the container is listening on
+  type: LoadBalancer     # Exposes it to localhost:5173
