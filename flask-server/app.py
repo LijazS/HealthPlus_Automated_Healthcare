@@ -26,7 +26,7 @@ if not SECRET_KEY:
 
 app = Flask(__name__)
 app.secret_key = SECRET_KEY
-CORS(app, supports_credentials=True)
+CORS(app, resources={r"/*": {"origins": "*"}}, supports_credentials=True)
 bcrypt = Bcrypt(app)
 jwt = JWTManager(app)
 
