@@ -64,7 +64,7 @@ const Landing = () => {
         ) : (
           <div className="fixed inset-0 w-full h-full bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-white flex items-center justify-center">
             <h1 className="text-2xl font-bold text-white md:text-6xl">
-              Please sign in to continue
+              HELLO THERE
             </h1>
           </div>
         )}
